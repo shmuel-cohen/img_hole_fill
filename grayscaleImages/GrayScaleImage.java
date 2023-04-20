@@ -1,13 +1,23 @@
+package grayscaleImages;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class GrayScaleImage implements GrayScale{
+/**
+ * this class implements grayscaleImages.GrayScale and create gray scale images from images.
+ */
+public class GrayScaleImage implements GrayScale {
     private final float[][] pixelImage ;
 
-
+    /**
+     * constructor that creates gray scale images from 2 images one is the picture and the other is the
+     * hole.
+     * @param imageFieldPath the path to the picture image.
+     * @param holeFilePath  the path to the hole image.
+     * @throws IOException in case of an I/O error  while opening the image files.
+     */
     public GrayScaleImage(String imageFieldPath, String holeFilePath) throws IOException {
         BufferedImage image = ImageIO.read(new File(imageFieldPath));
         pixelImage = new float[image.getWidth()][image.getHeight()];
@@ -18,7 +28,7 @@ public class GrayScaleImage implements GrayScale{
                 pixelImage[x][y] = (grayscale / 255F);
             }
         }
-
+        //save the hole
         image = ImageIO.read(new File(holeFilePath));
         for (int x = 0; x < image.getWidth(); x++) {
             for (int y = 0; y < image.getHeight(); y++) {
@@ -31,7 +41,11 @@ public class GrayScaleImage implements GrayScale{
         }
     }
 
-
+    /**
+     * method to save the gray scale image in RBG image.
+     * @param imagePath the path to save to.
+     * @throws IOException in case of an I/O error  while creating the image files.
+     */
     public void saveImage(String imagePath) throws IOException{
         BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_BYTE_GRAY);
         for (int x = 0; x < getWidth(); x++) {

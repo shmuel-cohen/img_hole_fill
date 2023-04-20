@@ -1,9 +1,20 @@
+package weightingFunctions;
+
 import java.util.Vector;
 
-
+/**
+ * this class implements WeightingFunctions.WeightingFunction and creates a new WeightingFunctions.WeightingFunction.
+ */
 public class DefaultDistanceFunction implements WeightingFunction {
     private final float z;
     private final float e;
+
+    /**
+     * constructor to create new instance of weighting function according to the following
+     * formula: 1 / (norm(u - v) ** z + epsilon)
+     * @param z z parameter.
+     * @param e epsilon parameter.
+     */
     public DefaultDistanceFunction(float z, float e){
         this.z = z;
         this.e = e;

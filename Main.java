@@ -1,3 +1,4 @@
+import grayscaleImages.GrayScaleImage;
 import java.io.IOException;
 
 /**
@@ -7,6 +8,10 @@ import java.io.IOException;
  * the arguments: [path_to_image] [path_to_mask] [z] [epsilon] [n_connectivity]
  */
 public class Main {
+
+    private static final String MISSED_PARAMETER_ERR = "missed parameter";
+    private static final String NUMBER_ARGUMENT_ERR = "pleas enter a number as arguments 3-5";
+
     public static void main(String[] args)  {
         try {
             GrayScaleImage grayScaleImage = new GrayScaleImage(args[0], args[1]);
@@ -14,12 +19,19 @@ public class Main {
                     Integer.parseInt(args[4]));
             String output = args[0].substring(0, args[0].lastIndexOf("."));
             grayScaleImage.saveImage(output);
-
+        }
+        catch (IndexOutOfBoundsException e) {
+            System.out.println(MISSED_PARAMETER_ERR);
+            System.exit(1);
+        }
+        catch (NumberFormatException e) {
+            System.out.println(NUMBER_ARGUMENT_ERR);
+            System.out.println(e.getMessage());
+            System.exit(1);
         }
         catch (IOException e) {
             System.out.println(e.getMessage());
-
+            System.exit(1);
         }
-
     }
 }

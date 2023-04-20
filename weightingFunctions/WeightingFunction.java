@@ -1,3 +1,5 @@
+package weightingFunctions;
+
 import java.util.Vector;
 
 /**
